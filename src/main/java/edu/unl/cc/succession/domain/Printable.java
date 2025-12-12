@@ -1,12 +1,7 @@
 package edu.unl.cc.succession.domain;
 
 /**
- *  @autor Grupo2 (PIA)
- *   - Integrantes:
- *      - Francisco Chamba
- *      - Alexander Gallo
- *      - Franz Ludeña
- *      - Jeam Romero
+ *  @autor Xander (Alexander Gallo)
  */
 
 public interface Printable {
