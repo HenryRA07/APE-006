@@ -1,19 +1,26 @@
 package edu.unl.cc.succession.domain;
 
 /**
- *  @autor Grupo2 (PIA)
- *   - Integrantes:
- *      - Francisco Chamba
- *      - Alexander Gallo
- *      - Franz Ludeña
- *      - Jeam Romero
+ *  @autor Xander (Alexander Gallo)
  */
 public interface Successionable extends Printable {
+    /**
+     * Generate the next term in the series based on the current term.
+     * @param currentTerm The current term in the series
+     * @return The next term in the series
+     */
+    Number nexTerm (Number currentTerm);
 
-    void setLimit(Number limite);
+    /**
+     * Setter the limit in the series
+     * @param limit
+     */
+    void setLimit (Number limit);
 
-    Number calculate();
-
-    Number nextTerm(Number currentTerm);
+    /**
+     * Calculate the result, if the necessary in the serie. The main method
+     * @return the result of the calaculate
+     */
+    Number calculate ();
 
 }

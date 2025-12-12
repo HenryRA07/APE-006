@@ -23,6 +23,7 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
         this(0, limit);
     }
 
+
     public EvenNumberCalculatorUpToLimit(Number start, Number limit) {
         if (start.intValue() < 0){
             throw new IllegalArgumentException("Start must be greater than 0");
@@ -47,8 +48,8 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
         this.limit = limit.intValue();
 
     }
-
     @Override
+
     public Number calculate() {
         long result = 0;
         this.currentTerm = nextTerm(currentTerm).intValue();
@@ -61,7 +62,6 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
 
         return result;
     }
-
     @Override
     public String print() {
         return  this.printableTerms.toString();
