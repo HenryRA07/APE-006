@@ -27,7 +27,7 @@ public class PrimeRootEvenSeriesUpToLimit implements Successionable {
     }
 
     private boolean isPrime(Integer number) {
-        if (number < 1) {
+        if (number < 2) {
             return false;
         }
         for (int i = 2; i < number; i++) {
@@ -63,11 +63,11 @@ public class PrimeRootEvenSeriesUpToLimit implements Successionable {
     public Number calculate() {
         double result = 0.0;
         int exponent = 2;
-        int currentTerm = this.currentTerm > 0 ? this.currentTerm - 1 : 1;
+        int currentTerm = this.currentTerm;
         while (currentTerm < limit) {
             this.printableTerms.append(currentTerm).append("^(1/").append(exponent).append(") + ");
-            currentTerm = nextTerm(currentTerm).intValue();
             result += Math.pow(currentTerm, 1.0 / exponent);
+            currentTerm = nextTerm(currentTerm).intValue();
             exponent += 2;
         }
         return result;
