@@ -2,6 +2,12 @@ package edu.unl.cc.succession.business;
 
 import edu.unl.cc.succession.domain.Successionable;
 
+/**
+ * Ejercicio #8:
+ * Esta clase calcula la serie de números primos elevados a la raiz cúbica hasta un n términos :
+ * (S = 1^(1/3) + 3^(1/3) + 5^(1/3) + 7^(1/3) + 11^(1/3) + 13^(1/3))
+ */
+
 public class PrimeNumbeWithPowCubicCalculatorWithTerm implements Successionable {
 
         private Integer limit;
@@ -29,6 +35,12 @@ public class PrimeNumbeWithPowCubicCalculatorWithTerm implements Successionable 
             this.limit = limit.intValue();
         }
 
+        /**
+         * Este metodo verifica si un número dado es un número primo.
+         *
+         * @param number El número entero a verificar.
+         * @return true si el número es primo, false en caso contrario.
+         */
         private boolean isPrime(Integer number) {
             if(number < 1) {
                 return false;
@@ -41,6 +53,13 @@ public class PrimeNumbeWithPowCubicCalculatorWithTerm implements Successionable 
             return true;
         }
 
+        /**
+         * Calcula la suma de la serie de los números primos elevados al cubo hasta el límite.
+         * La lógica implica iterar, encontrar el siguiente primo y acumular su cubo
+         * mientras el primo sea menor que el límite.
+         *
+         * @return La suma total de los términos de la serie (primos al cubo).
+         */
         @Override
         public Number calculate() {
             Double result = 0.0;

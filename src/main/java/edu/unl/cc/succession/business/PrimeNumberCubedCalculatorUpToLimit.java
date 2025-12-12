@@ -2,18 +2,23 @@ package edu.unl.cc.succession.business;
 
 import edu.unl.cc.succession.domain.Successionable;
 
-public class PrimeNumberCubedCalculator implements Successionable {
+/**
+ * Ejercicio #2:
+ * Esta clase calcula la serie de números primos elevados al cubo hasta un límite:
+ * (S = 2^3 + 3^3 + 5^3 + 7^3 + 11^3 + 13^3 +...)
+ */
+public class PrimeNumberCubedCalculatorUpToLimit implements Successionable {
     private Integer limit;
     private Integer currentTerm;
     private StringBuilder printableTerms;
 
-    public PrimeNumberCubedCalculator(Number limit) {
+    public PrimeNumberCubedCalculatorUpToLimit(Number limit) {
         this(0,limit);
     }
 
-    public PrimeNumberCubedCalculator(Number start, Number limit) {
+    public PrimeNumberCubedCalculatorUpToLimit(Number start, Number limit) {
         if(start.intValue() < 0 ) {
-            throw new IllegalArgumentException("Start must be greater than 0");
+            throw new IllegalArgumentException("Start must be greater than or equal to 0");
         }
         setLimit(limit);
         this.currentTerm = start.intValue();
@@ -23,11 +28,16 @@ public class PrimeNumberCubedCalculator implements Successionable {
     @Override
     public void setLimit(Number limit) {
         if(limit.intValue() < 0) {
-            throw new IllegalArgumentException("Limit must be greater than 0");
+            throw new IllegalArgumentException("Limit must be greater than or equal to 0");
         }
         this.limit = limit.intValue();
     }
 
+    /**
+     * Este metodo verifica si un número dado es un número primo.
+     * @param number El número entero a verificar.
+     * @return true si el número es primo, false en caso contrario.
+     */
     private boolean isPrime(Integer number) {
         if(number < 1) {
             return false;
@@ -40,6 +50,13 @@ public class PrimeNumberCubedCalculator implements Successionable {
         return true;
     }
 
+    /**
+     * Calcula la suma de la serie de los números primos elevados al cubo hasta el límite.
+     * La lógica implica iterar, encontrar el siguiente primo y acumular su cubo
+     * mientras el primo sea menor que el límite.
+     *
+     * @return La suma total de los términos de la serie (primos al cubo).
+     */
     @Override
     public Number calculate() {
             Double result = 0.0;
@@ -53,17 +70,24 @@ public class PrimeNumberCubedCalculator implements Successionable {
             return result;
     }
 
+    /**
+     * Encuentra el siguiente número primo después del término actual dado.
+     * Este método es la parte central de la lógica de la sucesión.
+     *
+     * @param currentTerm El número desde el cual se comenzará a buscar el siguiente primo.
+     * @return El siguiente número primo encontrado.
+     */
     @Override
     public Number nextTerm(Number currentTerm) {
-        currentTerm = currentTerm.intValue() + 1;
+        int nextCandidate = currentTerm.intValue() + 1;
         Boolean isPrime = false;
         while (!isPrime) {
-            isPrime =  isPrime(currentTerm.intValue());
+            isPrime =  isPrime(nextCandidate);
             if (!isPrime) {
-                currentTerm = currentTerm.intValue() + 1;
+                nextCandidate++;
             }
         }
-        return currentTerm;
+        return nextCandidate;
     }
 
     @Override
