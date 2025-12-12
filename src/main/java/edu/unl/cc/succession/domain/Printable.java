@@ -12,7 +12,9 @@ package edu.unl.cc.succession.domain;
 public interface Printable {
     /**
      * Get String representation of the object.
+     *
+     * @return
      */
-    void print();
+    String print();
 
 }

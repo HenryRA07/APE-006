@@ -49,7 +49,7 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
     }
 
     @Override
-    public void print() {
-
+    public String print() {
+        return printableTerms.toString();
     }
 }
