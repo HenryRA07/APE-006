@@ -15,6 +15,6 @@ public interface Printable {
      *
      * @return
      */
-    String print();
+    void print();
 
 }
