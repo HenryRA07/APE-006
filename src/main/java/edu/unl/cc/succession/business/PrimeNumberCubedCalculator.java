@@ -42,18 +42,15 @@ public class PrimeNumberCubedCalculator implements Successionable {
 
     @Override
     public Number calculate() {
-        Double result = 0.0;
-        int counterTerm = 0;
-        currentTerm = this.currentTerm > 0 ?  this.currentTerm - 1 : 0;
-        int exponent = 3;
-        while(counterTerm < limit) {
-            currentTerm = nextTerm(currentTerm).intValue();
-            this.printableTerms.append(currentTerm).append("^").append(exponent).append(" + ");
-            result = result + Math.pow(currentTerm, exponent);
-            counterTerm++;
-
-        }
-        return result;
+            Double result = 0.0;
+            currentTerm = this.currentTerm > 0 ?  this.currentTerm - 1 : 0;
+            int exponent = 3;
+            while(currentTerm < limit) {
+                this.printableTerms.append(currentTerm).append("^").append(exponent).append(" + ");
+                result = result + Math.pow(currentTerm, exponent);
+                currentTerm = nextTerm(currentTerm).intValue();
+            }
+            return result;
     }
 
     @Override
