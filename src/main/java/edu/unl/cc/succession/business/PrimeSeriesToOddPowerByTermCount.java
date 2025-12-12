@@ -45,7 +45,6 @@ public class PrimeSeriesToOddPowerByTermCount implements Successionable {
     }
     @Override
     public Number nextTerm(Number currentTerm) {
-
         currentTerm = currentTerm.intValue() + 1;
         boolean isPrime = false;
         while (!isPrime) {
@@ -68,14 +67,15 @@ public class PrimeSeriesToOddPowerByTermCount implements Successionable {
 
     @Override
     public Number calculate() {
-
         double result = 0.0;
+        int counterTerm = 0;
         int exponent = 1;
         currentTerm = this.currentTerm > 0 ? this.currentTerm - 1 : 0;
-        while (currentTerm < limit) {
+        while (counterTerm < limit) {
             currentTerm = nextTerm(currentTerm).intValue();
             this.printableTerms.append(currentTerm).append("^").append(exponent).append(" + ");
             result = result + Math.pow(currentTerm, exponent);
+            counterTerm++;
             exponent += 2;
         }
 

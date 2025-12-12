@@ -22,7 +22,7 @@ public class PrimeRootEvenSeriesUpToLimit implements Successionable {
             throw new IllegalArgumentException("Start must be greater than 0");
         }
         setLimit(limit);
-        currentTerm = (start.intValue() % 2 != 0) ? start.intValue() + 1 : start.intValue();
+        currentTerm = nextTerm(start).intValue();
         printableTerms = new StringBuilder("S = ");
     }
 
@@ -39,7 +39,7 @@ public class PrimeRootEvenSeriesUpToLimit implements Successionable {
 
     }
     @Override
-    public Number nexTerm(Number currentTerm) {
+    public Number nextTerm(Number currentTerm) {
         currentTerm = currentTerm.intValue() + 1;
         boolean isPrime = false;
         while (!isPrime) {
@@ -62,14 +62,12 @@ public class PrimeRootEvenSeriesUpToLimit implements Successionable {
     @Override
     public Number calculate() {
         double result = 0.0;
-        int counterTerm = 0;
         int exponent = 2;
-        int currentTerm = this.currentTerm > 1 ? this.currentTerm -1 : 1;
-        while (counterTerm < limit) {
-            currentTerm = nexTerm(currentTerm).intValue();
+        int currentTerm = this.currentTerm > 0 ? this.currentTerm - 1 : 1;
+        while (currentTerm < limit) {
             this.printableTerms.append(currentTerm).append("^(1/").append(exponent).append(") + ");
+            currentTerm = nextTerm(currentTerm).intValue();
             result += Math.pow(currentTerm, 1.0 / exponent);
-            counterTerm++;
             exponent += 2;
         }
         return result;

@@ -4,6 +4,7 @@ import edu.unl.cc.succession.domain.Successionable;
 
 /**
  * @author franz ludeña
+ * 10.
  */
 public class PrimeNumberCalculatorUpToLimit implements Successionable {
     private Integer limit;

@@ -4,6 +4,7 @@ import edu.unl.cc.succession.domain.Successionable;
 
 /**
  * @author franz ludeña
+ * 7.
  */
 
 public class PrimeNumberWithPowCalculatorWithTerm implements Successionable {

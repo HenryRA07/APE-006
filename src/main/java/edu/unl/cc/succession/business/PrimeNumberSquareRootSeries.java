@@ -3,7 +3,8 @@ package edu.unl.cc.succession.business;
 import edu.unl.cc.succession.domain.Successionable;
 
 /**
- * Ejercicio 9.  Serie de primos elevados a la raiz cuadrada hasta un limite (S = 1^(1/2)
+ * Ejercicio #9.
+ * Serie de primos elevados a la raiz cuadrada hasta un limite (S = 1^(1/2)
  * + 3^(1/2) + 5^(1/2) + 7^(1/2) + 11^(1/2) + 13^(1/2)+ .. + N^(1/2):
  * @author Xander (Alexander Gallo)
  */
@@ -38,7 +39,7 @@ public class PrimeNumberSquareRootSeries implements Successionable {
     }
 
     @Override
-    public Number nexTerm(Number currentTerm) {
+    public Number nextTerm(Number currentTerm) {
         currentTerm = currentTerm.intValue() + 1;
         boolean isPrime = false;
         while (!isPrime) {
@@ -61,14 +62,12 @@ public class PrimeNumberSquareRootSeries implements Successionable {
     @Override
     public Number calculate() {
         double result = 0.0;
-        int counterTerm = 0;
         int exponent = 2;
         int currentTerm = this.currentTerm < 1 ? this.currentTerm -1 : 1;
-        while (counterTerm < limit) {
-            currentTerm = nexTerm(currentTerm).intValue();
+        while (currentTerm < limit) {
             this.printableTerms.append(currentTerm).append("^(1/").append(exponent).append(") + ");
+            currentTerm = nextTerm(currentTerm).intValue();
             result += Math.pow(currentTerm, 1.0 / exponent);
-            counterTerm++;
         }
         return result;
     }

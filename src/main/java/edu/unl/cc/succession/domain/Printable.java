@@ -8,6 +8,6 @@ public interface Printable {
     /**
      * Get String representation of the object.
      */
-    void print();
+    String print();
 
 }

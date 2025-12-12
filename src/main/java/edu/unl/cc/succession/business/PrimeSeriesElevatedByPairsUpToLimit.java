@@ -70,8 +70,8 @@ public class PrimeSeriesElevatedByPairsUpToLimit implements Successionable {
         int exponent = 2;
         currentTerm = this.currentTerm > 0 ? this.currentTerm - 1 : 0;
         while (currentTerm < limit) {
-            currentTerm = nextTerm(currentTerm).intValue();
             this.printableTerms.append(currentTerm).append("^").append(exponent).append(" + ");
+            currentTerm = nextTerm(currentTerm).intValue();
             result = result + Math.pow(currentTerm, exponent);
             exponent+=2;
         }

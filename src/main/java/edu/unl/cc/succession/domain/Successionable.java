@@ -9,7 +9,7 @@ public interface Successionable extends Printable {
      * @param currentTerm The current term in the series
      * @return The next term in the series
      */
-    Number nexTerm (Number currentTerm);
+    Number nextTerm (Number currentTerm);
 
     /**
      * Setter the limit in the series
