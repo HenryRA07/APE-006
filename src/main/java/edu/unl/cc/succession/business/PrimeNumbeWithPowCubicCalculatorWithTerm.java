@@ -6,6 +6,7 @@ import edu.unl.cc.succession.domain.Successionable;
  * Ejercicio #8:
  * Esta clase calcula la serie de números primos elevados a la raiz cúbica hasta un n términos :
  * (S = 1^(1/3) + 3^(1/3) + 5^(1/3) + 7^(1/3) + 11^(1/3) + 13^(1/3))
+ * @author HenryDev (Jeam Romero)
  */
 
 public class PrimeNumbeWithPowCubicCalculatorWithTerm implements Successionable {

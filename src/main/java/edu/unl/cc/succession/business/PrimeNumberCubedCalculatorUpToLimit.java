@@ -6,6 +6,7 @@ import edu.unl.cc.succession.domain.Successionable;
  * Ejercicio #2:
  * Esta clase calcula la serie de números primos elevados al cubo hasta un límite:
  * (S = 2^3 + 3^3 + 5^3 + 7^3 + 11^3 + 13^3 +...)
+ * @author HenryDev (Jeam Romero)
  */
 public class PrimeNumberCubedCalculatorUpToLimit implements Successionable {
     private Integer limit;
