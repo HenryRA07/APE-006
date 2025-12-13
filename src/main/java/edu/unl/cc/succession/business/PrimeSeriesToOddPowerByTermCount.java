@@ -1,16 +1,12 @@
 package edu.unl.cc.succession.business;
 
 import edu.unl.cc.succession.domain.Successionable;
+
 /**
- *  @autor Grupo2 (PIA)
- *   - Integrantes:
- *      - Francisco Chamba
- *      - Alexander Gallo
- *      - Franz Ludeña
- *      - Jeam Romero
- *
- *     Representa el Calculo de serie de primos elevados a impares hasta n térmimos
- *     (S = S = 1^1 + 3^3 + 5^5 + 7^7 + 11^9 + 13^11 ..):
+ * @author Usuario iTC(Francisco Antonio Chamba Diaz).
+ * Ejercicio #5.
+ * Esta clase calcula serie de primos elevados a impares hasta n térmimos
+ * (S = S = 1^1 + 3^3 + 5^5 + 7^7 + 11^9 + 13^11 ..):
  */
 
 public class PrimeSeriesToOddPowerByTermCount implements Successionable {
@@ -24,11 +20,11 @@ public class PrimeSeriesToOddPowerByTermCount implements Successionable {
     }
 
     public PrimeSeriesToOddPowerByTermCount(Number start, Integer limit) {
-        if (start.intValue() < 0){
+        if (start.intValue() < 0) {
             throw new IllegalArgumentException("Start number must be greater than 0");
         }
         setLimit(limit);
-        currentTerm = nextTerm(start).intValue();
+        currentTerm = (isPrime(start.intValue())) ? start.intValue() : nextTerm(start).intValue();
         this.printableTerms = new StringBuilder("S = ");
     }
 
@@ -43,6 +39,7 @@ public class PrimeSeriesToOddPowerByTermCount implements Successionable {
         }
         return true;
     }
+
     @Override
     public Number nextTerm(Number currentTerm) {
         currentTerm = currentTerm.intValue() + 1;
@@ -67,14 +64,13 @@ public class PrimeSeriesToOddPowerByTermCount implements Successionable {
 
     @Override
     public Number calculate() {
-        double result = 0.0;
+        long result = 0;
         int counterTerm = 0;
         int exponent = 1;
-        currentTerm = this.currentTerm > 0 ? this.currentTerm - 1 : 0;
         while (counterTerm < limit) {
-            currentTerm = nextTerm(currentTerm).intValue();
             this.printableTerms.append(currentTerm).append("^").append(exponent).append(" + ");
-            result = result + Math.pow(currentTerm, exponent);
+            result = (long) (result + Math.pow(currentTerm, exponent));
+            currentTerm = nextTerm(currentTerm).intValue();
             counterTerm++;
             exponent += 2;
         }

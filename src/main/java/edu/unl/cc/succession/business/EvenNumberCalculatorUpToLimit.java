@@ -3,14 +3,10 @@ package edu.unl.cc.succession.business;
 import edu.unl.cc.succession.domain.Successionable;
 
 /**
- *  @autor Grupo2 (PIA)
- *   - Integrantes:
- *      - Francisco Chamba
- *      - Alexander Gallo
- *      - Franz Ludeña
- *      - Jeam Romero
- *      Representa el cálculo de la Serie números Pares hasta Limite N
- *  S = 2 + 4 + 6 + 8 + ... N
+ *  @author Usuario iTC(Francisco Antonio Chamba Diaz).
+ *  Ejercicio #1.
+ *  Esta clase calcula serie de numeros pares hasta un limite
+ *  (S = 2 + 4 + 6 + 8 + ... N):
  */
 
 public class EvenNumberCalculatorUpToLimit implements Successionable {
@@ -25,7 +21,7 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
 
 
     public EvenNumberCalculatorUpToLimit(Number start, Number limit) {
-        if (start.intValue() < 0){
+        if (start.intValue() < 0) {
             throw new IllegalArgumentException("Start must be greater than 0");
         }
         setLimit(limit);
@@ -42,19 +38,18 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
 
     @Override
     public void setLimit(Number limit) {
-        if (limit.intValue() < 0){
+        if (limit.intValue() < 0) {
             throw new IllegalArgumentException("Limit must be greater than 0");
         }
         this.limit = limit.intValue();
 
     }
+
     @Override
 
     public Number calculate() {
         long result = 0;
-        this.currentTerm = nextTerm(currentTerm).intValue();
-
-        while(this.currentTerm <= limit){
+        while (this.currentTerm <= limit) {
             this.printableTerms.append(this.currentTerm).append(" + ");
             result = result + this.currentTerm;
             this.currentTerm = nextTerm(currentTerm).intValue();
@@ -62,8 +57,9 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
 
         return result;
     }
+
     @Override
     public String print() {
-        return  this.printableTerms.toString();
+        return this.printableTerms.toString();
     }
 }

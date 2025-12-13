@@ -8,47 +8,49 @@ import edu.unl.cc.succession.domain.Successionable;
  * (S = 2^3 + 3^3 + 5^3 + 7^3 + 11^3 + 13^3 +...)
  * @author HenryDev (Jeam Romero)
  */
+
 public class PrimeNumberCubedCalculatorUpToLimit implements Successionable {
     private Integer limit;
     private Integer currentTerm;
     private StringBuilder printableTerms;
 
     public PrimeNumberCubedCalculatorUpToLimit(Number limit) {
-        this(0,limit);
+        this(0, limit);
     }
 
     public PrimeNumberCubedCalculatorUpToLimit(Number start, Number limit) {
-        if(start.intValue() < 0 ) {
+        if (start.intValue() < 0) {
             throw new IllegalArgumentException("Start must be greater than or equal to 0");
         }
         setLimit(limit);
-        this.currentTerm = start.intValue();
+        this.currentTerm = (isPrime(start.intValue())) ? start.intValue() : nextTerm(start).intValue();
         printableTerms = new StringBuilder("S = ");
-    }
-
-    @Override
-    public void setLimit(Number limit) {
-        if(limit.intValue() < 0) {
-            throw new IllegalArgumentException("Limit must be greater than or equal to 0");
-        }
-        this.limit = limit.intValue();
     }
 
     /**
      * Este metodo verifica si un número dado es un número primo.
+     *
      * @param number El número entero a verificar.
      * @return true si el número es primo, false en caso contrario.
      */
     private boolean isPrime(Integer number) {
-        if(number < 1) {
+        if (number < 1) {
             return false;
         }
-        for(int i = 2; i < number; i++) {
+        for (int i = 2; i < number; i++) {
             if (number % i == 0) {
                 return false;
             }
         }
         return true;
+    }
+
+    @Override
+    public void setLimit(Number limit) {
+        if (limit.intValue() < 0) {
+            throw new IllegalArgumentException("Limit must be greater than or equal to 0");
+        }
+        this.limit = limit.intValue();
     }
 
     /**
@@ -60,15 +62,14 @@ public class PrimeNumberCubedCalculatorUpToLimit implements Successionable {
      */
     @Override
     public Number calculate() {
-            Double result = 0.0;
-            currentTerm = this.currentTerm > 0 ?  this.currentTerm - 1 : 0;
-            int exponent = 3;
-            while(currentTerm < limit) {
-                this.printableTerms.append(currentTerm).append("^").append(exponent).append(" + ");
-                result = result + Math.pow(currentTerm, exponent);
-                currentTerm = nextTerm(currentTerm).intValue();
-            }
-            return result;
+        long result = 0;
+        int exponent = 3;
+        while (currentTerm < limit) {
+            this.printableTerms.append(currentTerm).append("^").append(exponent).append(" + ");
+            result = (long) (result + Math.pow(currentTerm, exponent));
+            currentTerm = nextTerm(currentTerm).intValue();
+        }
+        return result;
     }
 
     /**
@@ -83,7 +84,7 @@ public class PrimeNumberCubedCalculatorUpToLimit implements Successionable {
         int nextCandidate = currentTerm.intValue() + 1;
         Boolean isPrime = false;
         while (!isPrime) {
-            isPrime =  isPrime(nextCandidate);
+            isPrime = isPrime(nextCandidate);
             if (!isPrime) {
                 nextCandidate++;
             }

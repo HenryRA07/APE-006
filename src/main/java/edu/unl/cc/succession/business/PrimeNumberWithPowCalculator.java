@@ -4,8 +4,9 @@ import edu.unl.cc.succession.domain.Successionable;
 
 /**
  * @author franz ludeña
- *3.
- *
+ * Ejercicio #3.
+ * Esta clase calcula serie de primos elevados al cubo  hasta N términos
+ * (S = 1^3 + 3^3 + 5^3 + 7^3 + 11^3 + 13^3 ...):
  */
 
 public class PrimeNumberWithPowCalculator implements Successionable {
@@ -14,21 +15,21 @@ public class PrimeNumberWithPowCalculator implements Successionable {
     private final StringBuilder printableTerms;
 
     public PrimeNumberWithPowCalculator(Number limit) {
-        this(0,limit);
+        this(0, limit);
     }
 
     public PrimeNumberWithPowCalculator(Number start, Number limit) {
-        if(start.intValue() < 0 ) {
+        if (start.intValue() < 0) {
             throw new IllegalArgumentException("Start must be greater than 0");
         }
         setLimit(limit);
-        currentTerm = nextTerm(start).intValue();
+        currentTerm = (primeValidate(start.intValue())) ? start.intValue() : nextTerm(start).intValue();
         printableTerms = new StringBuilder("S = ");
     }
 
-    private boolean primeValidate(Integer number){
-        for (int i = 2; i < number.intValue(); i++){
-            if (number.intValue() % i == 0){
+    private boolean primeValidate(Integer number) {
+        for (int i = 2; i < number.intValue(); i++) {
+            if (number.intValue() % i == 0) {
                 return false;
             }
         }
@@ -37,7 +38,7 @@ public class PrimeNumberWithPowCalculator implements Successionable {
 
     @Override
     public void setLimit(Number limite) {
-        if (limite.intValue() < 0){
+        if (limite.intValue() < 0) {
             throw new IllegalArgumentException("Limit must be greater than 0");
         }
         this.limit = limite.intValue();
@@ -45,14 +46,13 @@ public class PrimeNumberWithPowCalculator implements Successionable {
 
     @Override
     public Number calculate() {
-        Double result = 0.0;
+        long result = 0;
         int counterTerm = 0;
         int exponentTerm = 3;
-        int currentTerm = this.currentTerm > 0 ? this.currentTerm - 1 : 0;
         while (counterTerm < limit) {
-            currentTerm = nextTerm(currentTerm).intValue();
             this.printableTerms.append(currentTerm).append("^").append(exponentTerm).append(" + ");
-            result = result + Math.pow(currentTerm, exponentTerm);
+            result = (long) (result + Math.pow(currentTerm, exponentTerm));
+            currentTerm = nextTerm(currentTerm).intValue();
             counterTerm++;
         }
         return result;
@@ -62,9 +62,9 @@ public class PrimeNumberWithPowCalculator implements Successionable {
     public Number nextTerm(Number currentTerm) {
         currentTerm = currentTerm.intValue() + 1;
         boolean isprime = false;
-        while(!isprime){
+        while (!isprime) {
             isprime = primeValidate(currentTerm.intValue());
-            if(!isprime){
+            if (!isprime) {
                 currentTerm = currentTerm.intValue() + 1;
             }
         }

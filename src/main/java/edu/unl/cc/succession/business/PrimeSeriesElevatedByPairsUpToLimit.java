@@ -1,15 +1,11 @@
 package edu.unl.cc.succession.business;
 
 import edu.unl.cc.succession.domain.Successionable;
+
 /**
- *  @autor Grupo2 (PIA)
- *   - Integrantes:
- *      - Francisco Chamba
- *      - Alexander Gallo
- *      - Franz Ludeña
- *      - Jeam Romero
- *
- * Representa el calculo de serie de primos elevados por pares hasta un limite
+ * @author Usuario iTC(Francisco Antonio Chamba Diaz).
+ * Ejercicio #4.
+ * Estq clase calcula la serie de primos elevados por pares hasta un limite
  * (S = 1^2 + 3^4 + 5^6 + 7^8 + 11^10 + 13^(12) ... + N):
  *
  */
@@ -28,7 +24,7 @@ public class PrimeSeriesElevatedByPairsUpToLimit implements Successionable {
             throw new IllegalArgumentException("Start number must be greater than 0");
         }
         setLimit(limit);
-        currentTerm = nextTerm(start).intValue();
+        currentTerm = (isPrime(start.intValue())) ? start.intValue() : nextTerm(start).intValue();
         this.printableTerms = new StringBuilder("S = ");
     }
     private boolean isPrime(Integer number){
@@ -66,13 +62,12 @@ public class PrimeSeriesElevatedByPairsUpToLimit implements Successionable {
 
     @Override
     public Number calculate() {
-        double result = 0.0;
+        long result = 0;
         int exponent = 2;
-        currentTerm = this.currentTerm > 0 ? this.currentTerm - 1 : 0;
-        while (currentTerm < limit) {
+        while (currentTerm <= limit) {
             this.printableTerms.append(currentTerm).append("^").append(exponent).append(" + ");
+            result = (long) (result + Math.pow(currentTerm, exponent));
             currentTerm = nextTerm(currentTerm).intValue();
-            result = result + Math.pow(currentTerm, exponent);
             exponent+=2;
         }
 
