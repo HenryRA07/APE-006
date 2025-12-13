@@ -3,9 +3,9 @@ package edu.unl.cc.succession.business;
 import edu.unl.cc.succession.domain.Successionable;
 
 /**
- * Ejercicio #9.
- * Serie de primos elevados a la raiz cuadrada hasta un limite (S = 1^(1/2)
- * + 3^(1/2) + 5^(1/2) + 7^(1/2) + 11^(1/2) + 13^(1/2)+ .. + N^(1/2):
+ * Ejercicio #9:
+ * Esta clase calcula la serie de primos elevados a la raiz cuadrada hasta un limite
+ * (S = 1^(1/2) + 3^(1/2) + 5^(1/2) + 7^(1/2) + 11^(1/2) + 13^(1/2)+ .. + N^(1/2):
  * @author Xander (Alexander Gallo)
  */
 
@@ -26,6 +26,13 @@ public class PrimeNumberSquareRootSeries implements Successionable {
         currentTerm = (start.intValue() % 2 != 0) ? start.intValue() + 1 : start.intValue();
         printableTerms = new StringBuilder("S = ");
     }
+
+    /**
+     * Determina si un número es primo.
+     *
+     * @param number Número que se desea evaluar.
+     * @return true si el número es primo; false si no lo es.
+     */
     private boolean isPrime(Integer number) {
         if (number < 2) {
             return false;
@@ -38,6 +45,13 @@ public class PrimeNumberSquareRootSeries implements Successionable {
         return true;
     }
 
+    /**
+     * Obtiene el siguiente número primo después del término recibido.
+     * Incrementa el valor actual y continúa avanzando hasta encontrar un primo.
+     *
+     * @param currentTerm El valor desde el cual se comenzará a buscar el siguiente primo.
+     * @return El siguiente número primo encontrado.
+     */
     @Override
     public Number nextTerm(Number currentTerm) {
         currentTerm = currentTerm.intValue() + 1;
@@ -51,6 +65,13 @@ public class PrimeNumberSquareRootSeries implements Successionable {
         return currentTerm;
     }
 
+    /**
+     * Establece el limite máximo que tendrá la serie.
+     * Este valor marca hasta dónde se generarán los términos.
+     *
+     * @param limit Límite superior permitido para los términos.
+     * @throws IllegalArgumentException Si el límite es negativo.
+     */
     @Override
     public void setLimit(Number limit) {
         if (limit.intValue() < 0) {
@@ -59,6 +80,11 @@ public class PrimeNumberSquareRootSeries implements Successionable {
         this.limit = limit.intValue();
     }
 
+    /**
+     * Realiza el calculo de la serie completa usando números primos, manteniendo su exponente (1/2).
+     *
+     * @return El valor total obtenido al sumar todos lo términos generados.
+     */
     @Override
     public Number calculate() {
         double result = 0.0;
