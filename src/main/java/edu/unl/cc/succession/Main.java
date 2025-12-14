@@ -25,9 +25,31 @@ public class Main {
     }
     public static int readOption(Scanner scanner){
         int option;
-        System.out.println("Elija la serie que quiera calcular: ");
-        option = scanner.nextInt();
+        while(true){
+            try{
+                System.out.println("Elija la serie que quiera calcular: ");
+                option = scanner.nextInt();
+                break;
+            }catch(Exception e){
+                System.out.println("Ingrese un numero valido");
+                scanner.nextLine();
+            }
+        }
         return option;
+    }
+    public static int readLimit(Scanner scanner){
+        int limit;
+        while(true){
+            try{
+                System.out.print("Ingrese un Limite/N termios :");
+                limit = scanner.nextInt();
+                break;
+            }catch(Exception e){
+                System.out.println("Ingrese un numero valido");
+                scanner.nextLine();
+            }
+        }
+        return limit;
     }
     public static void printEnd(){
         System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------");
@@ -41,55 +63,65 @@ public class Main {
         int option = 0;
         do {
             option = readOption(scanner);
-            System.out.print("Debe ingresar un limite/n termios :");
-            int limit = scanner.nextInt();
-            scanner.nextLine();
+            int limit = 0;
+            if(option != 0){
+                limit = readLimit(scanner);
+                scanner.nextLine();
+            }
             Successionable succesionable = null;
-            switch(option){
-                case (1):{
-                    succesionable = new EvenNumberCalculatorUpToLimit(limit);
-                    break;
+            try {
+                switch (option) {
+                    case (0): {
+                        printEnd();
+                        break;
+                    }
+                    case (1): {
+                        succesionable = new EvenNumberCalculatorUpToLimit(limit);
+                        break;
+                    }
+                    case (2): {
+                        succesionable = new PrimeNumberCubedCalculatorUpToLimit(limit);
+                        break;
+                    }
+                    case (3): {
+                        succesionable = new PrimeNumberWithPowCalculator(limit);
+                        break;
+                    }
+                    case (4): {
+                        succesionable = new PrimeSeriesElevatedByPairsUpToLimit(limit);
+                        break;
+                    }
+                    case (5): {
+                        succesionable = new PrimeSeriesToOddPowerByTermCount(limit);
+                        break;
+                    }
+                    case (6): {
+                        succesionable = new PrimeRootEvenSeriesUpToLimit(limit);
+                        break;
+                    }
+                    case (7): {
+                        succesionable = new PrimeNumberWithPowCalculatorWithTerm(limit);
+                        break;
+                    }
+                    case (8): {
+                        succesionable = new PrimeNumbeWithPowCubicCalculatorWithTerm(limit);
+                        break;
+                    }
+                    case (9): {
+                        succesionable = new PrimeNumberSquareRootSeries(limit);
+                        break;
+                    }
+                    case (10): {
+                        succesionable = new PrimeNumberCalculatorUpToLimit(limit);
+                        break;
+                    }
+                    default: {
+                        System.out.println("opcion invalida");
+                        break;
+                    }
                 }
-                case (2):{
-                    succesionable = new PrimeNumberCubedCalculatorUpToLimit(limit);
-                    break;
-                }
-                case (3):{
-                    succesionable = new PrimeNumberWithPowCalculator(limit);
-                    break;
-                }
-                case (4):{
-                    succesionable = new PrimeSeriesElevatedByPairsUpToLimit(limit);
-                    break;
-                }
-                case (5):{
-                    succesionable = new PrimeSeriesToOddPowerByTermCount(limit);
-                    break;
-                }
-                case (6):{
-                    succesionable = new PrimeRootEvenSeriesUpToLimit(limit);
-                    break;
-                }
-                case (7):{
-                    succesionable = new PrimeNumberWithPowCalculatorWithTerm(limit);
-                    break;
-                }
-                case (8):{
-                    succesionable = new PrimeNumbeWithPowCubicCalculatorWithTerm(limit);
-                    break;
-                }
-                case (9):{
-                    succesionable = new PrimeNumberSquareRootSeries(limit);
-                    break;
-                }
-                case (10):{
-                    succesionable = new PrimeNumberCalculatorUpToLimit(limit);
-                    break;
-                }
-                default:{
-                    System.out.println("opcion invalida");
-                    break;
-                }
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
             if(succesionable != null){
                 Number result = succesionable.calculate();
@@ -97,7 +129,5 @@ public class Main {
                 System.out.println("S = "+result+"\n");
             }
         } while (option != 0);
-        printEnd();
-
     }
 }

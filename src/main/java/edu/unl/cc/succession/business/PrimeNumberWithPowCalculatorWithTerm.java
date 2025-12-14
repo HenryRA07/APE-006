@@ -27,8 +27,13 @@ public class PrimeNumberWithPowCalculatorWithTerm implements Successionable {
         printableTerms = new StringBuilder("S = ");
     }
 
+    /**
+     * Valida que un numero sea primo
+     * @param number EL que se recive para evaluar
+     * @return Verdadero si el numero es primo falso si no
+     */
     private boolean primeValidate(Integer number) {
-        if (number < 1) {
+        if (number < 2) {
             return false;
         }
         for (int i = 2; i < number.intValue(); i++) {

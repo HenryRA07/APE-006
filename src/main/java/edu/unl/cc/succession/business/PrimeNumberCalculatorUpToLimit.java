@@ -27,8 +27,13 @@ public class PrimeNumberCalculatorUpToLimit implements Successionable {
         printableTerms = new StringBuilder("S = ");
     }
 
+    /**
+     * Valida que los numero qeu se generaran en la serie sean primos
+     * @param number EL numero que se evaluara
+     * @return El numero primo que se encontro
+     */
     private boolean primeValidate(Integer number) {
-        if (number < 1) {
+        if (number < 2) {
             return false;
         }
         for (int i = 2; i < number.intValue(); i++) {
@@ -47,6 +52,11 @@ public class PrimeNumberCalculatorUpToLimit implements Successionable {
         this.limit = limite.intValue();
     }
 
+    /**
+     * Calcula la suma de la serie de los números primos elevados al cubo hasta el límite.
+     *
+     * @return La suma total de los términos de la serie.
+     */
     @Override
     public Number calculate() {
         long result = 0;
@@ -58,6 +68,11 @@ public class PrimeNumberCalculatorUpToLimit implements Successionable {
         return result;
     }
 
+    /**
+     * Genera el siguiente termino en la serie de numeros asegurandose que sea primo
+     * @param currentTerm El termino actual en la serie
+     * @return El siguiente termino para la serie
+     */
     @Override
     public Number nextTerm(Number currentTerm) {
         currentTerm = currentTerm.intValue() + 1;

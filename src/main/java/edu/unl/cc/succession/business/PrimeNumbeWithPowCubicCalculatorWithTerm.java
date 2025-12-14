@@ -10,7 +10,6 @@ import edu.unl.cc.succession.domain.Successionable;
  */
 
 public class PrimeNumbeWithPowCubicCalculatorWithTerm implements Successionable {
-
     private Integer limit;
     private Integer currentTerm;
     private StringBuilder printableTerms;
@@ -43,7 +42,7 @@ public class PrimeNumbeWithPowCubicCalculatorWithTerm implements Successionable 
      * @return true si el número es primo, false en caso contrario.
      */
     private boolean isPrime(Integer number) {
-        if (number < 1) {
+        if (number < 2) {
             return false;
         }
         for (int i = 2; i < number; i++) {

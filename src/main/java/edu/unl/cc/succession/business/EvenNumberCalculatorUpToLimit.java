@@ -10,7 +10,6 @@ import edu.unl.cc.succession.domain.Successionable;
  */
 
 public class EvenNumberCalculatorUpToLimit implements Successionable {
-
     private Integer limit;
     private Integer currentTerm;
     private final StringBuilder printableTerms;
@@ -18,7 +17,6 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
     public EvenNumberCalculatorUpToLimit(Number limit) {
         this(0, limit);
     }
-
 
     public EvenNumberCalculatorUpToLimit(Number start, Number limit) {
         if (start.intValue() < 0) {
@@ -29,11 +27,14 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
         printableTerms = new StringBuilder("S = ");
     }
 
-
+    /**
+     *
+     * @param currentTerm El termino actual en la serie
+     * @return
+     */
     @Override
     public Number nextTerm(Number currentTerm) {
         return currentTerm.intValue() + 2;
-
     }
 
     @Override
@@ -42,11 +43,9 @@ public class EvenNumberCalculatorUpToLimit implements Successionable {
             throw new IllegalArgumentException("Limit must be greater than 0");
         }
         this.limit = limit.intValue();
-
     }
 
     @Override
-
     public Number calculate() {
         long result = 0;
         while (this.currentTerm <= limit) {

@@ -27,7 +27,15 @@ public class PrimeNumberWithPowCalculator implements Successionable {
         printableTerms = new StringBuilder("S = ");
     }
 
+    /**
+     * Valida que un numero sea primo
+     * @param number Numero a evaluar
+     * @return Verdadero si el numero es primo; falso si no
+     */
     private boolean primeValidate(Integer number) {
+        if (number < 2) {
+            return false;
+        }
         for (int i = 2; i < number.intValue(); i++) {
             if (number.intValue() % i == 0) {
                 return false;
@@ -44,6 +52,10 @@ public class PrimeNumberWithPowCalculator implements Successionable {
         this.limit = limite.intValue();
     }
 
+    /**
+     * Calcula el resultado final de la suma de la serie generada
+     * @return El resultado de la serie
+     */
     @Override
     public Number calculate() {
         long result = 0;
@@ -58,6 +70,11 @@ public class PrimeNumberWithPowCalculator implements Successionable {
         return result;
     }
 
+    /**
+     * Genera el siguiente termino en la serie
+     * @param currentTerm El termino actual en la serie
+     * @return El termino siguiente para la serie
+     */
     @Override
     public Number nextTerm(Number currentTerm) {
         currentTerm = currentTerm.intValue() + 1;

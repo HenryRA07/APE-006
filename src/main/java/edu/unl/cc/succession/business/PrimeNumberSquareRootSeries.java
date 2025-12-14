@@ -34,7 +34,7 @@ public class PrimeNumberSquareRootSeries implements Successionable {
      * @return true si el número es primo; false si no lo es.
      */
     private boolean isPrime(Integer number) {
-        if (number < 1) {
+        if (number < 2) {
             return false;
         }
         for (int i = 2; i < number; i++) {

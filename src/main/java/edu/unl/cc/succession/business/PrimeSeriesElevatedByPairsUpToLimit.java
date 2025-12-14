@@ -27,8 +27,14 @@ public class PrimeSeriesElevatedByPairsUpToLimit implements Successionable {
         currentTerm = (isPrime(start.intValue())) ? start.intValue() : nextTerm(start).intValue();
         this.printableTerms = new StringBuilder("S = ");
     }
+
+    /**
+     * Valida que un numero sea primo
+     * @param number EL que se recive para evaluar
+     * @return Verdadero si el numero es primo falso si no
+     */
     private boolean isPrime(Integer number){
-        if (number < 1) {
+        if (number < 2) {
             return false;
         }
         for (int i = 2; i < number; i++){
@@ -39,6 +45,11 @@ public class PrimeSeriesElevatedByPairsUpToLimit implements Successionable {
         return true;
     }
 
+    /**
+     * Genera el siguiente termino para la serie de numeros
+     * @param currentTerm El termino actual en la serie de numeros
+     * @return El siguiente termino
+     */
     @Override
     public Number nextTerm(Number currentTerm) {
         currentTerm= currentTerm.intValue() + 1;
@@ -60,6 +71,10 @@ public class PrimeSeriesElevatedByPairsUpToLimit implements Successionable {
         this.limit = limit.intValue();
     }
 
+    /**
+     * Calcula el resultado total de la suma de la serie
+     * @return El resultado de la suma
+     */
     @Override
     public Number calculate() {
         long result = 0;

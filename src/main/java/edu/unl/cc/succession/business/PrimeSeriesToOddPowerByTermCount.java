@@ -28,8 +28,13 @@ public class PrimeSeriesToOddPowerByTermCount implements Successionable {
         this.printableTerms = new StringBuilder("S = ");
     }
 
+    /**
+     * Valida que un numero sea primo
+     * @param number EL que se recive para evaluar
+     * @return Verdadero si el numero es primo falso si no
+     */
     private boolean isPrime(Integer number) {
-        if (number < 1) {
+        if (number < 2) {
             return false;
         }
         for (int i = 2; i < number; i++) {
@@ -40,6 +45,11 @@ public class PrimeSeriesToOddPowerByTermCount implements Successionable {
         return true;
     }
 
+    /**
+     * Genere el siguiente termino sabiendo si es primo o no
+     * @param currentTerm El termino actual en la serie
+     * @return
+     */
     @Override
     public Number nextTerm(Number currentTerm) {
         currentTerm = currentTerm.intValue() + 1;
@@ -61,7 +71,10 @@ public class PrimeSeriesToOddPowerByTermCount implements Successionable {
         this.limit = limit.intValue();
     }
 
-
+    /**
+     * Calcula la suma total de la serie
+     * @return Regresa el resultado de la suma
+     */
     @Override
     public Number calculate() {
         long result = 0;
